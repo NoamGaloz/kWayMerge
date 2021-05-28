@@ -1,9 +1,10 @@
 #pragma once
 #include <algorithm>
 #include "HeapNode.h"
+
 using namespace std;
 
-namespace H {
+namespace heap {
 	class Heap
 	{
 	public:

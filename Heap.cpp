@@ -1,6 +1,6 @@
 #include "Heap.h"
 
-namespace H {
+namespace heap {
 
 	Heap::Heap(int size)
 	{

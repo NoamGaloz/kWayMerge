@@ -5,7 +5,15 @@
 #include <fstream>
 #include <istream>
 #include <string>
-using namespace std;
+# include  "Heap.h"
 
+using namespace std;
+using namespace heap;
+
+int FindSizeOfGroup(int k, int n, int& rem);
 int* readNumbersFromFile(string inputFileName, int n);
+int* kWayMerge(int* arr, int k, int n);
 int* readNumbersToArr(ifstream &inputFile,int n);
+int Partition(int* A, int first, int end);
+void QuickSort(int* A, int left, int right);
+
