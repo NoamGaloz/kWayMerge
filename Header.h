@@ -16,3 +16,4 @@ int* kWayMerge(int* arr, int k, int n);
 int* readNumbersToArr(ifstream &inputFile,int n);
 int Partition(int* A, int first, int end);
 void QuickSort(int* A, int left, int right);
+void CheckAllDigits(string numInStr);

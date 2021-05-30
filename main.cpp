@@ -1,4 +1,5 @@
 #include "Header.h"
+#define IS_DIGIT(ch) ((ch>='0') && (ch<='9'))
 
 int main()
 {
@@ -23,9 +24,9 @@ int main()
 
 		WriteArrayToFile(sortedArr, n, outputFileName);
 	}
-	catch(exception ex)
+	catch(...)
 	{
-		cout << ex.what();
+		cout << "wrong input";
 		exit(1);
 	}
 }
@@ -45,12 +46,12 @@ void WriteArrayToFile(int* arr, int size, string fileName)
 		}
 		else
 		{
-			throw exception("output file didn't open successfully");
+			throw 0;
 		}
 	}
-	catch (exception ex)
+	catch (...)
 	{
-		cout << ex.what() << endl;
+		cout << "wrong input" << endl;
 		exit(1);
 	}
 	
@@ -75,7 +76,7 @@ int* readNumbersFromFile(string inputFileName, int n)
 	}
 	catch (...)
 	{
-		cout << "wrong Input" << endl;
+		cout << "wrong input" << endl;
 		exit(1);
 	}
 
@@ -92,6 +93,7 @@ int* readNumbersToArr(ifstream &inputFile,int n)
 
 	while (getline(inputFile, numInStr))
 	{
+		CheckAllDigits(numInStr);
 		int num = stoi(numInStr); //throws exception when faild
 		arrToSort[arrIdx] = num;
 		arrIdx++;
@@ -99,8 +101,23 @@ int* readNumbersToArr(ifstream &inputFile,int n)
 
 	if (arrIdx != n)
 	{
-		throw exception();
+		throw 0;
 	}
 
 	return arrToSort;
+}
+void CheckAllDigits(string numInStr)
+{
+	int i = 0;
+	if (numInStr[0] == '-')
+	{
+		i = 1;
+	}
+	for (; i < numInStr.size(); i++)
+	{
+		if (!IS_DIGIT(numInStr[i]))
+		{
+			throw 0;
+		}
+	}
 }
