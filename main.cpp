@@ -2,7 +2,7 @@
 
 int main()
 {
-	int n,k;
+	int n, k;
 	string inputFileName;
 	string outputFileName;
 
@@ -14,17 +14,47 @@ int main()
 	cin >> inputFileName;
 	cout << "Please Enter Output file name: ";
 	cin >> outputFileName;
-
-	int* arrToSort = readNumbersFromFile(inputFileName,n);
 	
-	/*int A[9] = { 2,-4,3,0,17,5,30,1,9 };
-	int B[7] = { 2,-4,3,0,17,5,30};
-	int C[16] = { 2,-4,-4,2,17,5,30,1,4,8,-21,13,42,-5,19,17};
-	int D[8] = { 0,0,3,-6,-230,44,-3,-1};*/
+	try 
+	{
+		int* arrToSort = readNumbersFromFile(inputFileName, n);
+
+		int* sortedArr = kWayMerge(arrToSort, k, n);
+
+		WriteArrayToFile(sortedArr, n, outputFileName);
+	}
+	catch(exception ex)
+	{
+		cout << ex.what();
+		exit(1);
+	}
+}
+
+void WriteArrayToFile(int* arr, int size, string fileName)
+{
+	ofstream outFile;
+
+	outFile.open(fileName);
+	try {
+		if (outFile)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				outFile << arr[i] << '\n';
+			}
+		}
+		else
+		{
+			throw exception("output file didn't open successfully");
+		}
+	}
+	catch (exception ex)
+	{
+		cout << ex.what() << endl;
+		exit(1);
+	}
 	
-	int* sortedArr = kWayMerge(arrToSort, k,n);
-
-
+	outFile.close();
 }
 
 int* readNumbersFromFile(string inputFileName, int n)
@@ -60,7 +90,6 @@ int* readNumbersToArr(ifstream &inputFile,int n)
 	int arrIdx = 0;
 	string numInStr;
 
-	
 	while (getline(inputFile, numInStr))
 	{
 		int num = stoi(numInStr); //throws exception when faild

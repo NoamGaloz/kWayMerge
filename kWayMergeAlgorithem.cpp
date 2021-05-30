@@ -18,7 +18,7 @@ int FindSizeOfGroup(int k, int n, int& rem)
 
 int* kWayMerge(int* arr, int k, int n)
 {
-	if ((n < k) || (k = 1))
+	if ((n < k) || (k == 1))
 	{
 		QuickSort(arr, 0, n - 1);
 		return arr;
@@ -26,6 +26,7 @@ int* kWayMerge(int* arr, int k, int n)
 
 	int* resArr = new int[n];
 	Heap H(k);
+	
 	int idxForResArr = 0;
 	int rem = n % k;
 	int subArrayStartIndex = 0;
@@ -60,44 +61,24 @@ int* kWayMerge(int* arr, int k, int n)
 
 int Partition(int* A, int first, int end)
 {
-	/*int temp;
-	int pivot = A[first];
-	while (first != end)
-	{
-		while ((A[first] < pivot) && (first <= end))
-		{
-			first++;
-		}
-		while ((A[end] > pivot) && (first <= end))
-		{
-			end--;
-		}
+		int pivot = A[end]; 
+		int i = (first - 1);
 
-		if (first >= end)
-			break;
-
-		temp = A[first];
-		A[first] = A[end];
+		for (int j = first; j < end; j++)
+		{
+			if (A[j] < pivot)
+			{
+				i++;    // increment index of smaller element
+				int temp = A[i];
+				A[i] = A[j];
+				A[j] = temp;
+			}
+		}
+		int temp = A[i+1];
+		A[i+1] = A[end];
 		A[end] = temp;
-	}
-	return end;*/
-
-	int pivot = A[first];
-	int temp;
-	int i = (first - 1);
-
-	for (int j = first; j <= end; j++)
-	{
-		if (A[j] < pivot)
-		{
-			i++;
-			temp = A[i];
-			A[i] = A[j];
-			A[j] = temp;
-		}
-	}
+		return (i + 1);
 	
-	return (i + 1);
 }
 
 void QuickSort(int* A, int left, int right)
