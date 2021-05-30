@@ -1,6 +1,6 @@
 #include "Heap.h"
 
-namespace H {
+namespace heap {
 
 	Heap::Heap(int size)
 	{
@@ -37,8 +37,8 @@ namespace H {
 		data[i] = *item;
 	}
 
-	//fix the heap which node is her root , according to FLOYD algoritem
-	void Heap::fixHeap(int node)
+	//fix the heap which node is her root , according to FLOYD algorithem
+	void Heap::fixHeap(const int node)
 	{
 		int min = 0;
 		int left = getLeft(node);
@@ -57,7 +57,6 @@ namespace H {
 		}
 	}
 
-
 	void swap(HeapNode* node1, HeapNode* node2)
 	{
 		HeapNode* temp = new HeapNode();
@@ -66,7 +65,7 @@ namespace H {
 		*node2 = *temp;
 	}
 
-	//returns the minimum- the first in the arr
+	//returns the minimum - the first in the arr
 	HeapNode& Heap::Min()
 	{
 		return data[0];
@@ -82,7 +81,6 @@ namespace H {
 		fixHeap(0);
 		return saveMin;
 	}
-
 
 	int Heap::getLeft(int node) const
 	{

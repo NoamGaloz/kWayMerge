@@ -1,44 +1,48 @@
 #pragma once
+using  namespace std;
+
+namespace heap {
 
 
-class HeapNode
-{
-public:
-
-	HeapNode()
+	class HeapNode
 	{
-	}
+	public:
 
-	HeapNode(int* arr, int size)
-	{
-		m_Arr = arr;
-		m_MinVal = arr[0];
-		m_currMinValIdx = 0;
-		m_Size = size;
-	}
+		HeapNode()
+		{
+		}
 
-	int getVal()
-	{
-		return m_MinVal;
-	}
+		HeapNode(int* arr, int size)
+		{
+			m_Arr = arr;
+			m_MinVal = arr[0];
+			m_currMinValIdx = 0;
+			m_Size = size;
+		}
 
-	int* getArr()
-	{
-		return m_Arr;
-	}
+		int getVal()
+		{
+			return m_MinVal;
+		}
 
-	void updateMinValToNext()
-	{
-		m_currMinValIdx++;
-		if (m_currMinValIdx = m_Size)
-			throw new exception("Arr end");
-		m_MinVal = m_Arr[m_currMinValIdx];
-	}
+		int* getArr()
+		{
+			return m_Arr;
+		}
 
-private:
-	int* m_Arr;
-	int m_MinVal;
-	int m_currMinValIdx;
-	int m_Size;
+		void updateMinValToNext()
+		{
+			m_currMinValIdx++;
+			if (m_currMinValIdx == m_Size)
+				throw exception("Arr end");
+			m_MinVal = m_Arr[m_currMinValIdx];
+		}
 
+	private:
+		int* m_Arr;
+		int m_MinVal;
+		int m_currMinValIdx;
+		int m_Size;
+
+	};
 }
